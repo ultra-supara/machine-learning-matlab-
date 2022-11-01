@@ -1,0 +1,16 @@
+load fisheriris
+
+rng('default');
+
+n = length(species);
+%評価データと学習データを半分にする
+c = cvpartition(n, 'KFold', 2);
+lda = fitcdiscr(meas, species, 'CVPartition', c);
+predictedSpecies = kfoldPredict(lda);
+confusionchart(species, predictedSpecies);
+
+%上のコードと同じ結果になります
+c = cvpartition(n, 'LeaveOut');
+lda = fitcdiscr(meas, species, 'CVPartition', c);
+predictedSpecies = kfoldPredict(lda);
+confusionchart(species, predictedSpecies);

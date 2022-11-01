@@ -1,0 +1,9 @@
+load census1994
+
+head(adultdata)
+
+[idx, scores] = fscchi2(adultdata, 'salary');
+
+idxInf = find(isinf(scores));
+
+scores(idxInf) = max(scores(~isinf(scores)))

@@ -1,0 +1,23 @@
+load fisheriris
+X = meas(:, 1:2);
+
+%教師あり
+figure, gscatter(X(:, 1), X(:, 2), species, 'rgb', 'osd');
+xlabel('length');
+ylabel('width');
+
+%教師なし
+figure, plot(X(:, 1), X(:, 2), 'k*', 'MarkerSize', 5);
+xlabel('length');
+ylabel('width');
+
+[idx, C] = kmeans(X, 3);
+figure;
+plot(X(idx==1,1), X(idx==1,2), 'b.', 'MarkerSize', 12);
+hold on
+plot(X(idx==2,1), X(idx==2,2), 'g.', 'MarkerSize', 12);
+plot(X(idx==3,1), X(idx==3,2), 'r.', 'MarkerSize', 12);
+
+plot(C(:,1), C(:,2), 'kx', 'MakerSize', 15, 'LineWidth', 3);
+legend('C_1','C_2', 'C_3', 'Centroids', 'Location', 'NW');
+hold off

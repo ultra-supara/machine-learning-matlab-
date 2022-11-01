@@ -1,0 +1,8 @@
+load fisheriris
+X = meas(:, 1:2);
+
+figure, gscatter(X(:, 1), X(:, 2), species, 'rgb', 'osd');
+xlabel('length');
+ylabel('width');
+
+lda = fit
